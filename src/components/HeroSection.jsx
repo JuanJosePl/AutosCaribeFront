@@ -58,19 +58,16 @@ export default function HeroSection() {
     >
       {/* Video Background */}
       <div className="absolute inset-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover scale-105"
-        >
-          <source
-            src="https://drive.google.com/uc?export=download&id=1r-iLSP2WKNniKgcrvFIuOo-TItpLiimQ
-"
-            type="video/mp4"
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+          <video
+            src="https://res.cloudinary.com/disqdfjy9/video/upload/v1762275537/cars2compri_sfogok.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
           />
-        </video>
+        </div>
 
         {/* Multi-layer gradient overlay - Verde */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />

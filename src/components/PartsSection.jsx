@@ -64,18 +64,13 @@ export default function PartsSection() {
       {/* Video Background */}
       <div className="absolute inset-0">
         <video
+          className="w-full h-full object-cover"
+          src="https://res.cloudinary.com/disqdfjy9/video/upload/f_auto,q_auto/v1730748023/piesasCars_uhujyb.mp4"
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source
-            src="https://drive.google.com/uc?export=download&id=1URPAh9ufrCb9cFfU7GkxoA9TkQzKw1Y5
-"
-            type="video/mp4"
-          />
-        </video>
+        />
 
         {/* Enhanced overlay with gradient - Verde */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/85 to-black/70" />
