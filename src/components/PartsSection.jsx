@@ -1,11 +1,19 @@
-import { useRef, useState } from "react"
-import { motion, useInView } from "framer-motion"
-import { Package, Shield, Clock, CheckCircle, Wrench, Star, ArrowRight } from "lucide-react"
+import { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import {
+  Package,
+  Shield,
+  Clock,
+  CheckCircle,
+  Wrench,
+  Star,
+  ArrowRight,
+} from "lucide-react";
 
 export default function PartsSection() {
-  const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
-  const [hoveredCard, setHoveredCard] = useState(null)
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   const stats = [
     {
@@ -26,13 +34,14 @@ export default function PartsSection() {
       label: "Soporte Técnico",
       color: "from-primary-600 to-primary-700",
     },
-  ]
+  ];
 
   const features = [
     {
       icon: CheckCircle,
       title: "Autenticidad Garantizada",
-      description: "Todos nuestros repuestos son 100% originales y certificados",
+      description:
+        "Todos nuestros repuestos son 100% originales y certificados",
     },
     {
       icon: Wrench,
@@ -44,10 +53,14 @@ export default function PartsSection() {
       title: "Calidad Premium",
       description: "Solo trabajamos con proveedores oficiales de primera línea",
     },
-  ]
+  ];
 
   return (
-    <section id="parts" ref={sectionRef} className="relative min-h-screen w-full overflow-hidden">
+    <section
+      id="parts"
+      ref={sectionRef}
+      className="relative min-h-screen w-full overflow-hidden"
+    >
       {/* Video Background */}
       <div className="absolute inset-0">
         <video
@@ -57,7 +70,11 @@ export default function PartsSection() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/videoBackground/piesasCars.mp4" type="video/mp4" />
+          <source
+            src="https://drive.google.com/uc?export=download&id=1URPAh9ufrCb9cFfU7GkxoA9TkQzKw1Y5
+"
+            type="video/mp4"
+          />
         </video>
 
         {/* Enhanced overlay with gradient - Verde */}
@@ -98,16 +115,22 @@ export default function PartsSection() {
               </h2>
 
               <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-10 leading-relaxed">
-                Contamos con un amplio inventario de repuestos originales y de alta calidad.
-                Nuestro equipo de expertos garantiza la{" "}
-                <span className="text-primary-400 font-semibold">autenticidad</span> y el mejor{" "}
-                <span className="text-primary-400 font-semibold">rendimiento</span> para tu vehículo.
+                Contamos con un amplio inventario de repuestos originales y de
+                alta calidad. Nuestro equipo de expertos garantiza la{" "}
+                <span className="text-primary-400 font-semibold">
+                  autenticidad
+                </span>{" "}
+                y el mejor{" "}
+                <span className="text-primary-400 font-semibold">
+                  rendimiento
+                </span>{" "}
+                para tu vehículo.
               </p>
 
               {/* Features List */}
               <div className="space-y-6 mb-10">
                 {features.map((feature, index) => {
-                  const Icon = feature.icon
+                  const Icon = feature.icon;
                   return (
                     <motion.div
                       key={index}
@@ -124,10 +147,12 @@ export default function PartsSection() {
                         <h3 className="text-white font-semibold text-lg md:text-xl mb-2">
                           {feature.title}
                         </h3>
-                        <p className="text-gray-400 text-sm md:text-base">{feature.description}</p>
+                        <p className="text-gray-400 text-sm md:text-base">
+                          {feature.description}
+                        </p>
                       </div>
                     </motion.div>
-                  )
+                  );
                 })}
               </div>
 
@@ -150,7 +175,7 @@ export default function PartsSection() {
               className="grid gap-6"
             >
               {stats.map((stat, index) => {
-                const Icon = stat.icon
+                const Icon = stat.icon;
                 return (
                   <motion.div
                     key={index}
@@ -187,13 +212,17 @@ export default function PartsSection() {
                           <motion.div
                             className="text-4xl md:text-5xl font-bold text-white mb-2"
                             animate={
-                              hoveredCard === index ? { scale: [1, 1.1, 1] } : {}
+                              hoveredCard === index
+                                ? { scale: [1, 1.1, 1] }
+                                : {}
                             }
                             transition={{ duration: 0.3 }}
                           >
                             {stat.value}
                           </motion.div>
-                          <div className="text-gray-300 text-base md:text-lg">{stat.label}</div>
+                          <div className="text-gray-300 text-base md:text-lg">
+                            {stat.label}
+                          </div>
                         </div>
                       </div>
 
@@ -206,7 +235,7 @@ export default function PartsSection() {
                       />
                     </div>
                   </motion.div>
-                )
+                );
               })}
 
               {/* Additional Info Card */}
@@ -223,15 +252,21 @@ export default function PartsSection() {
                 <ul className="space-y-4 text-gray-300">
                   <li className="flex items-center space-x-3 group hover:translate-x-2 transition-transform">
                     <div className="w-2 h-2 bg-primary-400 rounded-full group-hover:scale-150 transition-transform" />
-                    <span className="text-sm md:text-base">Envío rápido a todo el Caribe</span>
+                    <span className="text-sm md:text-base">
+                      Envío rápido a todo el Caribe
+                    </span>
                   </li>
                   <li className="flex items-center space-x-3 group hover:translate-x-2 transition-transform">
                     <div className="w-2 h-2 bg-accent-400 rounded-full group-hover:scale-150 transition-transform" />
-                    <span className="text-sm md:text-base">Precios competitivos garantizados</span>
+                    <span className="text-sm md:text-base">
+                      Precios competitivos garantizados
+                    </span>
                   </li>
                   <li className="flex items-center space-x-3 group hover:translate-x-2 transition-transform">
                     <div className="w-2 h-2 bg-primary-400 rounded-full group-hover:scale-150 transition-transform" />
-                    <span className="text-sm md:text-base">Asesoría técnica especializada</span>
+                    <span className="text-sm md:text-base">
+                      Asesoría técnica especializada
+                    </span>
                   </li>
                 </ul>
               </motion.div>
@@ -240,5 +275,5 @@ export default function PartsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

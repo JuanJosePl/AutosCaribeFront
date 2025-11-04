@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import { ChevronDown, Sparkles, Zap, Shield, ArrowRight } from "lucide-react"
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { ChevronDown, Sparkles, Zap, Shield, ArrowRight } from "lucide-react";
 
 export default function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true)
-  }, [])
+    setIsVisible(true);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -18,7 +18,7 @@ export default function HeroSection() {
         delayChildren: 0.3,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 50, opacity: 0 },
@@ -31,16 +31,31 @@ export default function HeroSection() {
         damping: 12,
       },
     },
-  }
+  };
 
   const features = [
-    { icon: Sparkles, text: "Vehículos Premium", color: "from-primary-400 to-primary-600" },
-    { icon: Zap, text: "Servicio Rápido", color: "from-accent-400 to-accent-600" },
-    { icon: Shield, text: "Garantía Total", color: "from-primary-500 to-primary-700" },
-  ]
+    {
+      icon: Sparkles,
+      text: "Vehículos Premium",
+      color: "from-primary-400 to-primary-600",
+    },
+    {
+      icon: Zap,
+      text: "Servicio Rápido",
+      color: "from-accent-400 to-accent-600",
+    },
+    {
+      icon: Shield,
+      text: "Garantía Total",
+      color: "from-primary-500 to-primary-700",
+    },
+  ];
 
   return (
-    <section id="hero" className="relative min-h-screen w-full overflow-hidden flex items-center">
+    <section
+      id="hero"
+      className="relative min-h-screen w-full overflow-hidden flex items-center"
+    >
       {/* Video Background */}
       <div className="absolute inset-0">
         <video
@@ -50,13 +65,17 @@ export default function HeroSection() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover scale-105"
         >
-          <source src="/videoBackground/cars2.mp4" type="video/mp4" />
+          <source
+            src="https://drive.google.com/uc?export=download&id=1r-iLSP2WKNniKgcrvFIuOo-TItpLiimQ
+"
+            type="video/mp4"
+          />
         </video>
-        
+
         {/* Multi-layer gradient overlay - Verde */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
         <div className="absolute inset-0 bg-gradient-to-r from-primary-900/40 via-transparent to-primary-900/40" />
-        
+
         {/* Animated gradient orbs - Verde */}
         <motion.div
           animate={{
@@ -111,7 +130,7 @@ export default function HeroSection() {
             >
               Bienvenido a{" "}
               <span className="gradient-text-green block sm:inline mt-2 sm:mt-0">
-                 Autos del Caribe
+                Autos del Caribe
               </span>
             </motion.h1>
 
@@ -121,8 +140,11 @@ export default function HeroSection() {
               className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 mb-12 font-light leading-relaxed max-w-3xl mx-auto px-4"
             >
               Tu destino premium para vehículos de{" "}
-              <span className="font-semibold text-primary-400">lujo</span> y repuestos de{" "}
-              <span className="font-semibold text-primary-400">calidad excepcional</span>
+              <span className="font-semibold text-primary-400">lujo</span> y
+              repuestos de{" "}
+              <span className="font-semibold text-primary-400">
+                calidad excepcional
+              </span>
             </motion.p>
 
             {/* Features */}
@@ -131,19 +153,23 @@ export default function HeroSection() {
               className="flex flex-wrap justify-center gap-4 md:gap-6 mb-12 px-4"
             >
               {features.map((feature, index) => {
-                const Icon = feature.icon
+                const Icon = feature.icon;
                 return (
                   <motion.div
                     key={index}
                     whileHover={{ scale: 1.05, y: -5 }}
                     className="flex items-center space-x-2 px-4 md:px-6 py-3 glass-effect border border-primary-500/20 rounded-full"
                   >
-                    <div className={`w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center`}>
+                    <div
+                      className={`w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center`}
+                    >
                       <Icon className="w-4 h-4 md:w-5 md:h-5 text-white" />
                     </div>
-                    <span className="text-white font-medium text-sm md:text-base">{feature.text}</span>
+                    <span className="text-white font-medium text-sm md:text-base">
+                      {feature.text}
+                    </span>
                   </motion.div>
-                )
+                );
               })}
             </motion.div>
 
@@ -194,7 +220,9 @@ export default function HeroSection() {
                   <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-400 mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-gray-400 text-xs md:text-sm">{stat.label}</div>
+                  <div className="text-gray-400 text-xs md:text-sm">
+                    {stat.label}
+                  </div>
                 </motion.div>
               ))}
             </motion.div>
@@ -228,5 +256,5 @@ export default function HeroSection() {
         </motion.a>
       </motion.div>
     </section>
-  )
+  );
 }
