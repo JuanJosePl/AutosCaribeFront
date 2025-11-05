@@ -22,7 +22,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Enhanced Custom scrollbar - Verde */
+/* Custom scrollbar - Verde */
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -58,22 +58,29 @@ video {
 /* Selection styling - Verde */
 ::selection {
   background-color: #22c55e;
-  color: #000000;
+  color: #ffffff;
 }
 
 ::-moz-selection {
   background-color: #22c55e;
-  color: #000000;
+  color: #ffffff;
 }
 
-/* Custom gradient utilities */
+/* Utility Classes */
 @layer utilities {
-  .gradient-text-green {
-    background: linear-gradient(135deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+  .gradient-text-static {
+    background: linear-gradient(135deg, #22c55e 0%, #4ade80 50%, #10b981 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #22c55e 0%, #4ade80 50%, #10b981 100%);
     background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     animation: gradientShift 3s ease infinite;
   }
 
@@ -99,9 +106,17 @@ video {
     border: 1px solid rgba(255, 255, 255, 0.15);
   }
 
+  .hover-glow-green {
+    transition: all 0.3s ease;
+  }
+
+  .hover-glow-green:hover {
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.5);
+    transform: translateY(-4px);
+  }
+
   .container-custom {
     width: 100%;
-    max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1rem;
@@ -110,6 +125,13 @@ video {
 
   @media (min-width: 640px) {
     .container-custom {
+      max-width: 640px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container-custom {
+      max-width: 768px;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
@@ -117,47 +139,37 @@ video {
 
   @media (min-width: 1024px) {
     .container-custom {
+      max-width: 1024px;
       padding-left: 2rem;
       padding-right: 2rem;
     }
   }
+
+  @media (min-width: 1280px) {
+    .container-custom {
+      max-width: 1280px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .container-custom {
+      max-width: 1536px;
+    }
+  }
 }
 
-/* Enhanced hover glow effect - Verde */
-.hover-glow-green {
-  position: relative;
-  transition: all 0.3s ease;
+/* Animations */
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
-.hover-glow-green::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  padding: 2px;
-  background: linear-gradient(45deg, #22c55e, #4ade80, #22c55e);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.hover-glow-green:hover::before {
-  opacity: 1;
-}
-
-.hover-glow-green:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(34, 197, 94, 0.3);
-}
-
-/* Pulse animation for important elements */
-.pulse-glow-green {
-  animation: pulse-glow-green 2s ease-in-out infinite;
-}
-
-@keyframes pulse-glow-green {
+@keyframes pulse-glow {
   0%,
   100% {
     box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
@@ -167,7 +179,6 @@ video {
   }
 }
 
-/* Shimmer effect for loading states */
 @keyframes shimmer {
   0% {
     background-position: -1000px 0;
@@ -177,21 +188,31 @@ video {
   }
 }
 
-.shimmer {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  background-size: 1000px 100%;
-  animation: shimmer 2s infinite;
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 /* Focus visible for accessibility */
 *:focus-visible {
   outline: 2px solid #22c55e;
   outline-offset: 2px;
+}
+
+/* Remove transitions for motion-reduced users */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Responsive utilities */

@@ -9,6 +9,7 @@ export default function Navbar() {
     { name: "Inicio", href: "#hero" },
     { name: "Marcas", href: "#brands" },
     { name: "Repuestos", href: "#parts" },
+    { name: "Escuela", href: "#driving-school" },
     { name: "Contacto", href: "#social" },
   ];
 
@@ -50,8 +51,6 @@ export default function Navbar() {
               />
             </motion.a>
           </div>
-
-
 
           {/* Contact Button - Desktop only */}
           <div className="hidden lg:flex absolute right-8 top-1/2 transform -translate-y-1/2">

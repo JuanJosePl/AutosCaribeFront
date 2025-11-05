@@ -1,10 +1,11 @@
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
-import { Award, TrendingUp, Users } from "lucide-react"
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Award, TrendingUp, Users, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function BrandsSection() {
-  const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   const brands = [
     { name: "BMW", logo: "/logoAutos/bmw.png" },
@@ -16,13 +17,28 @@ export default function BrandsSection() {
     { name: "Porsche", logo: "/logoAutos/porshe.png" },
     { name: "Renault", logo: "/logoAutos/renault.png" },
     { name: "Toyota", logo: "/logoAutos/toyota.png" },
-  ]
+  ];
 
   const stats = [
-    { icon: Award, value: "9+", label: "Marcas Premium", color: "from-primary-400 to-primary-600" },
-    { icon: TrendingUp, value: "98%", label: "Satisfacción", color: "from-accent-400 to-accent-600" },
-    { icon: Users, value: "15K+", label: "Clientes", color: "from-primary-500 to-primary-700" },
-  ]
+    {
+      icon: Award,
+      value: "9+",
+      label: "Marcas Premium",
+      color: "from-primary-400 to-primary-600",
+    },
+    {
+      icon: TrendingUp,
+      value: "98%",
+      label: "Satisfacción",
+      color: "from-accent-400 to-accent-600",
+    },
+    {
+      icon: Users,
+      value: "15K+",
+      label: "Clientes",
+      color: "from-primary-500 to-primary-700",
+    },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -32,7 +48,7 @@ export default function BrandsSection() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 50, opacity: 0 },
@@ -45,7 +61,7 @@ export default function BrandsSection() {
         damping: 12,
       },
     },
-  }
+  };
 
   return (
     <section
@@ -104,12 +120,11 @@ export default function BrandsSection() {
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-white px-4">
             Marcas de{" "}
-            <span className="gradient-text-green">
-              Prestigio Mundial
-            </span>
+            <span className="gradient-text-green">Prestigio Mundial</span>
           </h2>
           <p className="text-gray-400 text-base md:text-lg lg:text-xl max-w-2xl mx-auto px-4 leading-relaxed">
-            Trabajamos con las marcas más reconocidas y prestigiosas del mercado automotriz internacional
+            Trabajamos con las marcas más reconocidas y prestigiosas del mercado
+            automotriz internacional
           </p>
         </motion.div>
 
@@ -121,7 +136,7 @@ export default function BrandsSection() {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 max-w-4xl mx-auto"
         >
           {stats.map((stat, index) => {
-            const Icon = stat.icon
+            const Icon = stat.icon;
             return (
               <motion.div
                 key={index}
@@ -129,14 +144,22 @@ export default function BrandsSection() {
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="group relative overflow-hidden glass-effect backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-primary-500/20 hover:border-primary-500/50 transition-all duration-300"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                <div className={`w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                />
+                <div
+                  className={`w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                >
                   <Icon className="w-7 h-7 md:w-8 md:h-8 text-white" />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-gray-400 text-sm md:text-base">{stat.label}</div>
+                <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-gray-400 text-sm md:text-base">
+                  {stat.label}
+                </div>
               </motion.div>
-            )
+            );
           })}
         </motion.div>
 
@@ -156,7 +179,7 @@ export default function BrandsSection() {
             >
               {/* Hover glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-500/0 to-accent-500/0 group-hover:from-primary-500/20 group-hover:to-accent-500/20 transition-all duration-500" />
-              
+
               {/* Logo */}
               <div className="relative z-10 w-full h-full flex items-center justify-center">
                 <img
@@ -176,7 +199,9 @@ export default function BrandsSection() {
 
               {/* Brand name on hover */}
               <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white text-center font-semibold text-sm md:text-base">{brand.name}</p>
+                <p className="text-white text-center font-semibold text-sm md:text-base">
+                  {brand.name}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -189,15 +214,18 @@ export default function BrandsSection() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-16 md:mt-20"
         >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 gradient-bg-green hover:gradient-bg-green-hover text-white font-semibold rounded-full shadow-lg hover:shadow-primary-500/50 transition-all duration-300"
-          >
-            Ver Todos los Vehículos
-          </motion.button>
+          <Link to="/galeria">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 gradient-bg-green hover:gradient-bg-green-hover text-white font-semibold rounded-full shadow-lg hover:shadow-primary-500/50 transition-all duration-300 inline-flex items-center gap-2"
+            >
+              Ver Todos los Vehículos
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
+          </Link>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

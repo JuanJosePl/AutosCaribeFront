@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom"
 import { ChevronDown, Sparkles, Zap, Shield, ArrowRight } from "lucide-react";
 
 export default function HeroSection() {
@@ -175,20 +176,22 @@ export default function HeroSection() {
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center px-4"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative px-8 py-4 gradient-bg-green text-white font-semibold rounded-full overflow-hidden shadow-lg hover:shadow-primary-500/50 transition-all flex items-center justify-center gap-2"
-              >
-                <span className="relative z-10">Ver Inventario</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                <motion.div
-                  className="absolute inset-0 gradient-bg-green-hover"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.button>
+              <Link to="/galeria">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative px-8 py-4 gradient-bg-green text-white font-semibold rounded-full overflow-hidden shadow-lg hover:shadow-primary-500/50 transition-all flex items-center justify-center gap-2"
+                >
+                  <span className="relative z-10">Ver Inventario</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <motion.div
+                    className="absolute inset-0 gradient-bg-green-hover"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.button>
+              </Link>
 
               <motion.button
                 whileHover={{ scale: 1.05 }}

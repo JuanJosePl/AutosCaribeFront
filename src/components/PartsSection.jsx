@@ -8,7 +8,10 @@ import {
   Wrench,
   Star,
   ArrowRight,
+  Sparkles 
 } from "lucide-react";
+import { Link } from "react-router-dom"
+
 
 export default function PartsSection() {
   const sectionRef = useRef(null);
@@ -152,14 +155,23 @@ export default function PartsSection() {
               </div>
 
               {/* CTA Button */}
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group flex items-center gap-2 px-8 py-4 gradient-bg-green text-white font-semibold rounded-full overflow-hidden shadow-lg hover:shadow-primary-500/50 transition-all"
-              >
-                <span className="relative z-10">Ver Catálogo de Repuestos</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
+              <Link to="/galeria-repuesto">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative px-8 py-4 gradient-bg-green text-white font-semibold rounded-full overflow-hidden shadow-lg hover:shadow-primary-500/50 transition-all mt-8 flex items-center gap-2"
+                >
+                  <Sparkles className="w-5 h-5" />
+                  <span className="relative z-10">Ver Catálogo de Repuestos</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-accent-600 to-primary-600"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.button>
+              </Link>
             </motion.div>
 
             {/* Right Column - Stats Cards */}
