@@ -51,6 +51,26 @@ export default function SidebarAcademia() {
         {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
+      {/* Logo Centrado */}
+          <div className="relative flex justify-center items-center h-20 md:h-24">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="absolute z-10"
+            >
+              <Link
+                to="/"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              >
+                <img
+                  src="/logoEmpresa/logoNav(sinFondo).png"
+                  alt="Caribe Autos"
+                  className="h-72 w-96 md:h-40 lg:h-44 object-contain transition-all duration-300"
+                />
+              </Link>
+            </motion.div>
+          </div>
+
       {/* Sidebar en móviles (animada) */}
       <AnimatePresence>
         {open && (

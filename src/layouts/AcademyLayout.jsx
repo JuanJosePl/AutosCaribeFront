@@ -6,8 +6,7 @@ import Footer from "../components/Footer"
 export default function AcademyLayout() {
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
-      {/* 🔹 Navbar superior */}
-      <Navbar />
+
 
       <div className="flex flex-1">
         {/* 🔹 Sidebar lateral izquierda */}
