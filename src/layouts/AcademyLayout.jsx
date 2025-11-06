@@ -1,8 +1,27 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
 import SidebarAcademia from "../components/academy/SidebarAcademia"
 
 export default function AcademyLayout() {
+  const navigate = useNavigate()
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  useEffect(() => {
+    // Verificar si hay usuario autenticado
+    const currentUser = localStorage.getItem("academyCurrentUser")
+    
+    if (!currentUser) {
+      navigate("/academia/login")
+    } else {
+      setIsAuthenticated(true)
+    }
+  }, [navigate])
+
+  if (!isAuthenticated) {
+    return null // O un loader mientras verifica
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black">
       {/* Sidebar */}
@@ -40,7 +59,7 @@ export default function AcademyLayout() {
         </div>
 
         {/* Content with proper padding and spacing */}
-        <main className="relative z-10 w-full pt-8 md:pt-0">
+        <main className="relative z-10 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
