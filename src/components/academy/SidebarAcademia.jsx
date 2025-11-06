@@ -59,7 +59,7 @@ export default function SidebarAcademia() {
               className="absolute z-10"
             >
               <Link
-                to="/"
+                to="/academia/seccion"
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               >
                 <img
