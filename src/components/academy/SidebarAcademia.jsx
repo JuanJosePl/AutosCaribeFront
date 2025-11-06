@@ -1,249 +1,75 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import {
-  Menu,
-  X,
-  Home,
-  BookOpen,
-  Calendar,
-  CreditCard,
-  RefreshCcw,
-  Package,
-  Users,
-  MonitorPlay,
-  BarChart,
-  FileText,
-  Map,
-  Star,
-  Trophy,
-  Share2,
-  LogOut,
-  User,
-  Settings,
-  Bell,
-  ChevronRight,
-  Zap,
-  Target,
-  Award,
-} from "lucide-react";
+  Menu, X, Home, BookOpen, Calendar, CreditCard, RefreshCcw, Package,
+  Users, MonitorPlay, BarChart, FileText, Map, Star, Trophy, Share2,
+  LogOut, Settings, Bell, Search, ChevronRight, Zap, Award
+} from "lucide-react"
 
 export default function SidebarAcademia() {
-  const [open, setOpen] = useState(false);
-  const [hoveredLink, setHoveredLink] = useState(null);
-  const [currentUser, setCurrentUser] = useState(null);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const [open, setOpen] = useState(false)
+  const [hoveredLink, setHoveredLink] = useState(null)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [user, setUser] = useState(null)
+  const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("academyCurrentUser"));
-    setCurrentUser(user);
-  }, []);
+    // Obtener usuario actual
+    const usuarioActual = localStorage.getItem("academiaUsuarioActual")
+    if (usuarioActual) {
+      setUser(JSON.parse(usuarioActual))
+    }
+  }, [])
 
-  const handleLogout = () => {
-    localStorage.removeItem("academyCurrentUser");
-    navigate("/academia/login");
-  };
-
-  const menuGroups = [
+  const menuSections = [
     {
       title: "Principal",
       items: [
-        { to: "/academia/dashboard", label: "Dashboard", icon: Home, badge: null },
-        { to: "/academia/mis-clases", label: "Mis Clases", icon: BookOpen, badge: "3" },
-        { to: "/academia/agendar", label: "Agendar Clase", icon: Calendar, badge: null },
-      ],
-    },
-    {
-      title: "Aprendizaje",
-      items: [
-        { to: "/academia/progreso", label: "Mi Progreso", icon: BarChart, badge: "85%" },
-        { to: "/academia/simulador", label: "Simulador", icon: MonitorPlay, badge: "Nuevo" },
-        { to: "/academia/ruta", label: "Ruta de Aprendizaje", icon: Map, badge: null },
-        { to: "/academia/examenes", label: "Exámenes", icon: FileText, badge: null },
-      ],
+        { to: "/academia/dashboard", label: "Dashboard", icon: Home, color: "from-green-500 to-emerald-500", badge: null },
+        { to: "/academia/mis-clases", label: "Mis Clases", icon: BookOpen, color: "from-blue-500 to-cyan-500", badge: "3" },
+        { to: "/academia/agendar-clase", label: "Agendar Clase", icon: Calendar, color: "from-purple-500 to-pink-500", badge: null },
+      ]
     },
     {
       title: "Servicios",
       items: [
-        { to: "/academia/planes", label: "Planes", icon: CreditCard, badge: null },
-        { to: "/academia/renovar", label: "Renovar Licencia", icon: RefreshCcw, badge: null },
-        { to: "/academia/combos", label: "Combos", icon: Package, badge: "Oferta" },
-      ],
+        { to: "/academia/planes", label: "Planes", icon: CreditCard, color: "from-yellow-500 to-orange-500", badge: "Nuevo" },
+        { to: "/academia/renovar-licencia", label: "Renovar Licencia", icon: RefreshCcw, color: "from-red-500 to-pink-500", badge: null },
+        { to: "/academia/combos", label: "Combos", icon: Package, color: "from-green-500 to-teal-500", badge: "30% OFF" },
+      ]
+    },
+    {
+      title: "Aprendizaje",
+      items: [
+        { to: "/academia/instructores", label: "Instructores", icon: Users, color: "from-indigo-500 to-purple-500", badge: null },
+        { to: "/academia/simulador", label: "Simulador Virtual", icon: MonitorPlay, color: "from-cyan-500 to-blue-500", badge: "VR" },
+        { to: "/academia/progreso", label: "Mi Progreso", icon: BarChart, color: "from-green-500 to-lime-500", badge: "85%" },
+        { to: "/academia/examenes", label: "Exámenes", icon: FileText, color: "from-orange-500 to-red-500", badge: null },
+        { to: "/academia/ruta-aprendizaje", label: "Ruta de Aprendizaje", icon: Map, color: "from-pink-500 to-rose-500", badge: null },
+      ]
     },
     {
       title: "Comunidad",
       items: [
-        { to: "/academia/instructores", label: "Instructores", icon: Users, badge: null },
-        { to: "/academia/logros", label: "Logros", icon: Trophy, badge: "5" },
-        { to: "/academia/referidos", label: "Referir Amigos", icon: Share2, badge: null },
-      ],
-    },
-  ];
+        { to: "/academia/clases-en-vivo", label: "Clases en Vivo", icon: MonitorPlay, color: "from-red-500 to-orange-500", badge: "🔴 LIVE" },
+        { to: "/academia/opiniones", label: "Opiniones", icon: Star, color: "from-yellow-500 to-amber-500", badge: null },
+        { to: "/academia/logros", label: "Logros", icon: Trophy, color: "from-yellow-500 to-orange-500", badge: "12" },
+        { to: "/academia/referidos", label: "Referir Amigos", icon: Share2, color: "from-blue-500 to-indigo-500", badge: "$$$" },
+      ]
+    }
+  ]
 
-  const quickStats = [
-    { icon: Target, value: "8/20", label: "Clases", color: "text-primary-400" },
-    { icon: Zap, value: "85%", label: "Progreso", color: "text-green-400" },
-    { icon: Award, value: "5", label: "Logros", color: "text-yellow-400" },
-  ];
+  const allLinks = menuSections.flatMap(section => section.items)
+  const filteredLinks = allLinks.filter(link => 
+    link.label.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
-  const SidebarContent = ({ mobile = false }) => (
-    <>
-      {/* Header con Logo y Usuario */}
-      <div className={`${mobile ? "p-4" : "p-6"} border-b border-gray-800/50`}>
-        <Link to="/academia/dashboard" className="block mb-4">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="flex items-center gap-3"
-          >
-            <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">CA</span>
-            </div>
-            <div>
-              <h2 className="text-lg font-bold text-white leading-tight">
-                Academia <span className="text-primary-400">Caribe</span>
-              </h2>
-              <p className="text-[10px] text-gray-500 uppercase tracking-wider">
-                Driving School
-              </p>
-            </div>
-          </motion.div>
-        </Link>
-
-        {currentUser && (
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="glass-effect p-3 rounded-xl border border-gray-800/50 cursor-pointer group"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-accent-600 rounded-full flex items-center justify-center">
-                <User className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-white text-sm font-semibold truncate">
-                  {currentUser.fullName?.split(" ")[0]}
-                </p>
-                <p className="text-gray-500 text-xs truncate">Plan Premium</p>
-              </div>
-              <ChevronRight className="w-4 h-4 text-gray-500 group-hover:text-primary-400 transition-colors" />
-            </div>
-          </motion.div>
-        )}
-      </div>
-
-      {/* Quick Stats */}
-      <div className="p-4 grid grid-cols-3 gap-2">
-        {quickStats.map((stat, idx) => {
-          const Icon = stat.icon;
-          return (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.05, y: -2 }}
-              className="glass-effect p-3 rounded-xl border border-gray-800/50 text-center"
-            >
-              <Icon className={`w-4 h-4 ${stat.color} mx-auto mb-1`} />
-              <p className="text-white font-bold text-sm">{stat.value}</p>
-              <p className="text-gray-500 text-[10px]">{stat.label}</p>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Navigation Menu */}
-      <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-6 custom-scrollbar">
-        {menuGroups.map((group, groupIdx) => (
-          <div key={groupIdx}>
-            <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider px-3 mb-3">
-              {group.title}
-            </p>
-            <div className="space-y-1">
-              {group.items.map((item) => {
-                const Icon = item.icon;
-                const isActive = location.pathname === item.to;
-                return (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    onClick={() => mobile && setOpen(false)}
-                    onMouseEnter={() => setHoveredLink(item.to)}
-                    onMouseLeave={() => setHoveredLink(null)}
-                    className="block relative"
-                  >
-                    <motion.div
-                      whileHover={{ x: 4 }}
-                      className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-all ${
-                        isActive
-                          ? "bg-gradient-to-r from-primary-600/20 to-accent-600/20 text-white border border-primary-500/30"
-                          : "text-gray-400 hover:text-white hover:bg-white/5"
-                      }`}
-                    >
-                      <Icon className="w-5 h-5 flex-shrink-0" />
-                      <span className="text-sm font-medium flex-1">{item.label}</span>
-                      {item.badge && (
-                        <span
-                          className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                            item.badge === "Nuevo" || item.badge === "Oferta"
-                              ? "bg-green-500/20 text-green-400"
-                              : "bg-primary-500/20 text-primary-400"
-                          }`}
-                        >
-                          {item.badge}
-                        </span>
-                      )}
-                    </motion.div>
-
-                    {/* Active Indicator */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeTab"
-                        className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-primary-500 to-accent-500 rounded-r-full"
-                      />
-                    )}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        ))}
-      </nav>
-
-      {/* Bottom Actions */}
-      <div className="p-4 border-t border-gray-800/50 space-y-2">
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all"
-        >
-          <Bell className="w-5 h-5" />
-          <span className="text-sm font-medium">Notificaciones</span>
-          <span className="ml-auto w-2 h-2 bg-red-500 rounded-full"></span>
-        </motion.button>
-
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all"
-        >
-          <Settings className="w-5 h-5" />
-          <span className="text-sm font-medium">Configuración</span>
-        </motion.button>
-
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all"
-        >
-          <LogOut className="w-5 h-5" />
-          <span className="text-sm font-medium">Cerrar Sesión</span>
-        </motion.button>
-
-        <div className="text-center text-gray-600 text-[10px] mt-4">
-          © 2024 Academia Caribe
-        </div>
-      </div>
-    </>
-  );
+  const handleLogout = () => {
+    localStorage.removeItem("academiaUsuarioActual")
+    navigate("/")
+  }
 
   return (
     <>
@@ -252,7 +78,7 @@ export default function SidebarAcademia() {
         onClick={() => setOpen(!open)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed top-5 left-5 z-[60] md:hidden w-12 h-12 bg-gradient-to-br from-primary-600 to-accent-600 rounded-xl shadow-lg flex items-center justify-center"
+        className="fixed top-6 left-6 z-[60] md:hidden w-14 h-14 gradient-bg-green rounded-2xl shadow-2xl flex items-center justify-center"
       >
         <AnimatePresence mode="wait">
           {open ? (
@@ -277,99 +103,272 @@ export default function SidebarAcademia() {
         </AnimatePresence>
       </motion.button>
 
-      {/* Mobile Sidebar - Slide from Left */}
+      {/* Overlay for Mobile */}
       <AnimatePresence>
         {open && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setOpen(false)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[55] md:hidden"
-            />
-
-            {/* Sidebar */}
-            <motion.aside
-              initial={{ x: -320, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -320, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-gray-900/98 to-black/98 backdrop-blur-xl shadow-2xl z-[56] border-r border-gray-800/50 flex flex-col md:hidden overflow-hidden"
-            >
-              {/* Animated Background Gradient */}
-              <div className="absolute inset-0 opacity-30 pointer-events-none">
-                <motion.div
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.5, 0.3],
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute top-0 right-0 w-64 h-64 bg-primary-500/30 rounded-full blur-3xl"
-                />
-                <motion.div
-                  animate={{
-                    scale: [1.2, 1, 1.2],
-                    opacity: [0.3, 0.5, 0.3],
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1,
-                  }}
-                  className="absolute bottom-0 left-0 w-64 h-64 bg-accent-500/30 rounded-full blur-3xl"
-                />
-              </div>
-
-              <div className="relative z-10 flex flex-col h-full">
-                <SidebarContent mobile={true} />
-              </div>
-            </motion.aside>
-          </>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setOpen(false)}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 md:hidden"
+          />
         )}
       </AnimatePresence>
 
-      {/* Desktop Sidebar - Always Visible */}
-      <aside className="hidden md:flex md:flex-col h-screen w-80 bg-gradient-to-b from-gray-900/98 to-black/98 backdrop-blur-xl border-r border-gray-800/50 fixed left-0 top-0 z-40 overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
+      {/* Sidebar */}
+      <AnimatePresence>
+        <motion.aside
+          initial={false}
+          animate={{
+            x: open ? 0 : -320,
+            opacity: open ? 1 : 0
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          className={`
+            fixed top-0 left-0 h-screen w-80 z-50
+            bg-gradient-to-b from-gray-950/95 via-gray-900/95 to-black/95
+            backdrop-blur-2xl border-r border-primary-500/20
+            flex flex-col shadow-2xl
+            md:translate-x-0 md:opacity-100
+          `}
+        >
+          {/* Header with Logo & User */}
+          <div className="p-6 border-b border-white/10">
+            {/* Logo */}
+            <Link to="/academia/dashboard" onClick={() => setOpen(false)}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="mb-6 relative"
+              >
+                <img
+                  src="/logoEmpresa/logoNav(sinFondo).png"
+                  alt="Academia Caribe"
+                  className="h-16 w-auto mx-auto object-contain"
+                />
+                <motion.div
+                  animate={{
+                    boxShadow: [
+                      "0 0 20px rgba(34, 197, 94, 0.3)",
+                      "0 0 40px rgba(34, 197, 94, 0.5)",
+                      "0 0 20px rgba(34, 197, 94, 0.3)",
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute inset-0 rounded-xl"
+                />
+              </motion.div>
+            </Link>
+
+            {/* User Card */}
+            {user && (
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="glass-effect p-4 rounded-2xl border border-white/10 relative overflow-hidden group cursor-pointer"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full gradient-bg-green flex items-center justify-center text-white font-bold text-lg">
+                    {user.nombres?.charAt(0)}{user.apellidos?.charAt(0)}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-white font-bold truncate">{user.nombres} {user.apellidos}</p>
+                    <p className="text-gray-400 text-xs flex items-center gap-1">
+                      <Award className="w-3 h-3 text-green-400" />
+                      Estudiante Activo
+                    </p>
+                  </div>
+                  <Bell className="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
+                </div>
+              </motion.div>
+            )}
+          </div>
+
+          {/* Search Bar */}
+          <div className="px-6 py-4 border-b border-white/10">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Buscar..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 glass-effect border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-green-500 transition-all text-sm"
+              />
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex-1 overflow-y-auto px-4 py-4 space-y-6 scrollbar-hide">
+            {searchQuery ? (
+              // Search Results
+              <div className="space-y-1">
+                <p className="text-gray-500 text-xs px-4 mb-3">
+                  {filteredLinks.length} resultados
+                </p>
+                {filteredLinks.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    {...link}
+                    isActive={location.pathname === link.to}
+                    onHover={setHoveredLink}
+                    isHovered={hoveredLink === link.to}
+                    onClick={() => setOpen(false)}
+                  />
+                ))}
+              </div>
+            ) : (
+              // Grouped Navigation
+              menuSections.map((section, idx) => (
+                <motion.div
+                  key={section.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                >
+                  <p className="text-gray-500 text-xs font-bold uppercase tracking-wider px-4 mb-3 flex items-center gap-2">
+                    <span className="flex-1">{section.title}</span>
+                    <Zap className="w-3 h-3 text-green-400" />
+                  </p>
+                  <div className="space-y-1">
+                    {section.items.map((link) => (
+                      <NavLink
+                        key={link.to}
+                        {...link}
+                        isActive={location.pathname === link.to}
+                        onHover={setHoveredLink}
+                        isHovered={hoveredLink === link.to}
+                        onClick={() => setOpen(false)}
+                      />
+                    ))}
+                  </div>
+                </motion.div>
+              ))
+            )}
+          </nav>
+
+          {/* Footer Actions */}
+          <div className="p-4 border-t border-white/10 space-y-2">
+            <Link
+              to="/academia/configuracion"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 px-4 py-3 glass-effect rounded-xl hover:bg-white/10 transition-all text-gray-300 hover:text-white group"
+            >
+              <Settings className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
+              <span className="text-sm font-medium">Configuración</span>
+            </Link>
+            
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center gap-3 px-4 py-3 glass-effect rounded-xl hover:bg-red-500/20 border border-transparent hover:border-red-500/50 transition-all text-gray-300 hover:text-red-400 group"
+            >
+              <LogOut className="w-5 h-5" />
+              <span className="text-sm font-medium">Cerrar Sesión</span>
+            </button>
+
+            <div className="text-center pt-2">
+              <p className="text-gray-600 text-xs">
+                © {new Date().getFullYear()} Academia Caribe
+              </p>
+            </div>
+          </div>
+        </motion.aside>
+      </AnimatePresence>
+    </>
+  )
+}
+
+// NavLink Component with Advanced Animations
+function NavLink({ to, label, icon: Icon, color, badge, isActive, onHover, isHovered, onClick }) {
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      onMouseEnter={() => onHover(to)}
+      onMouseLeave={() => onHover(null)}
+      className="block relative group"
+    >
+      <motion.div
+        whileHover={{ x: 4 }}
+        whileTap={{ scale: 0.98 }}
+        className={`
+          relative flex items-center gap-3 px-4 py-3 rounded-xl transition-all
+          ${isActive 
+            ? 'bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-green-500/50 shadow-lg shadow-green-500/20' 
+            : 'hover:bg-white/5 border border-transparent'
+          }
+        `}
+      >
+        {/* Active Indicator */}
+        {isActive && (
           <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute top-0 right-0 w-64 h-64 bg-primary-500/30 rounded-full blur-3xl"
+            layoutId="activeIndicator"
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 gradient-bg-green rounded-r-full"
           />
-          <motion.div
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1,
-            }}
-            className="absolute bottom-0 left-0 w-64 h-64 bg-accent-500/30 rounded-full blur-3xl"
-          />
+        )}
+
+        {/* Icon with Gradient Background */}
+        <div className={`
+          relative w-10 h-10 rounded-xl flex items-center justify-center
+          bg-gradient-to-br ${color}
+          ${isActive ? 'scale-110 shadow-lg' : 'opacity-80 group-hover:opacity-100 group-hover:scale-110'}
+          transition-all duration-300
+        `}>
+          <Icon className="w-5 h-5 text-white" />
+          
+          {/* Glow Effect */}
+          {isHovered && (
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1.5, opacity: 0 }}
+              transition={{ duration: 0.6, repeat: Infinity }}
+              className={`absolute inset-0 rounded-xl bg-gradient-to-br ${color}`}
+            />
+          )}
         </div>
 
-        <div className="relative z-10 flex flex-col h-full">
-          <SidebarContent />
-        </div>
-      </aside>
-    </>
-  );
+        {/* Label */}
+        <span className={`
+          flex-1 text-sm font-medium transition-colors
+          ${isActive ? 'text-white' : 'text-gray-300 group-hover:text-white'}
+        `}>
+          {label}
+        </span>
+
+        {/* Badge */}
+        {badge && (
+          <motion.span
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            className={`
+              px-2 py-1 rounded-full text-xs font-bold
+              ${badge === "🔴 LIVE" 
+                ? 'bg-red-500 text-white animate-pulse' 
+                : 'bg-white/10 text-white'
+              }
+            `}
+          >
+            {badge}
+          </motion.span>
+        )}
+
+        {/* Hover Arrow */}
+        <ChevronRight className={`
+          w-4 h-4 transition-all
+          ${isActive || isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}
+          ${isActive ? 'text-green-400' : 'text-gray-400'}
+        `} />
+
+        {/* Hover Glow */}
+        {isHovered && !isActive && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={`absolute inset-0 rounded-xl bg-gradient-to-r ${color} opacity-10`}
+          />
+        )}
+      </motion.div>
+    </Link>
+  )
 }
