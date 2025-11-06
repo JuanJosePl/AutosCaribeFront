@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
 import SidebarAcademia from "../components/academy/SidebarAcademia"
-import { Navbar } from "../components/Navbar"
-import { Footer } from "../components/footer"
+import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 
 export default function AcademyLayout() {
   return (
