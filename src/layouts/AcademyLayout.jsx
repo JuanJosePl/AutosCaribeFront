@@ -1,25 +1,19 @@
-import { Outlet } from "react-router-dom"
-import SidebarAcademia from "../components/academy/SidebarAcademia"
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
+import { Outlet } from "react-router-dom";
+import SidebarAcademia from "../components/academy/SidebarAcademia";
 
 export default function AcademyLayout() {
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black">
+      {/* Sidebar */}
+      <SidebarAcademia />
 
-
-      <div className="flex flex-1">
-        {/* 🔹 Sidebar lateral izquierda */}
-        <SidebarAcademia />
-
-        {/* 🔹 Contenido principal (Outlet renderiza la página actual) */}
-        <main className="flex-1 p-6 md:p-10 md:ml-72 overflow-y-auto">
+      {/* Main Content Area */}
+      <div className="md:ml-80 min-h-screen">
+        {/* Content with proper padding */}
+        <main className="w-full">
           <Outlet />
         </main>
       </div>
-
-      {/* 🔹 Footer */}
-      <Footer />
     </div>
-  )
+  );
 }
