@@ -17,7 +17,7 @@ export default function SidebarAcademia() {
 
   useEffect(() => {
     // Obtener usuario actual
-    const usuarioActual = localStorage.getItem("academiaUsuarioActual")
+    const usuarioActual = localStorage.getItem("academyCurrentUser")
     if (usuarioActual) {
       setUser(JSON.parse(usuarioActual))
     }
