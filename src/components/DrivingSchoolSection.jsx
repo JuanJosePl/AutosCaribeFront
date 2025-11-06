@@ -1,22 +1,33 @@
-import { useRef, useState, useEffect } from "react"
-import { motion, useInView, useScroll, useTransform } from "framer-motion"
-import { MapPin, MessageCircle, Play, Pause, Car, Bike, Bus, Phone } from "lucide-react"
+import { useRef, useState, useEffect } from "react";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import {
+  MapPin,
+  MessageCircle,
+  Play,
+  Pause,
+  Car,
+  Bike,
+  Bus,
+  Phone,
+  User,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function DrivingSchoolSection() {
-  const sectionRef = useRef(null)
-  const videoRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: false, margin: "-100px" })
-  const [currentStory, setCurrentStory] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(true)
-  const [progress, setProgress] = useState(0)
+  const sectionRef = useRef(null);
+  const videoRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
+  const [currentStory, setCurrentStory] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"]
-  })
+    offset: ["start end", "end start"],
+  });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100])
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   // Stories de transformación real
   const stories = [
@@ -27,7 +38,8 @@ export default function DrivingSchoolSection() {
       role: "Diseñadora",
       location: "Barranquilla",
       image: "https://i.pravatar.cc/400?img=5",
-      quote: "Tenía 28 años y nunca había conducido. El miedo me paralizaba. Hoy manejo mi propio carro y llevé a mi mamá al hospital cuando más lo necesitaba.",
+      quote:
+        "Tenía 28 años y nunca había conducido. El miedo me paralizaba. Hoy manejo mi propio carro y llevé a mi mamá al hospital cuando más lo necesitaba.",
       moment: "Mi primer viaje sola a la playa",
       emotion: "Libertad absoluta",
       time: "3 meses después",
@@ -40,7 +52,8 @@ export default function DrivingSchoolSection() {
       role: "Empresario",
       location: "Cartagena",
       image: "https://i.pravatar.cc/400?img=12",
-      quote: "Perdí mi trabajo y necesitaba nuevas oportunidades. Aprender a conducir me abrió puertas que nunca imaginé. Ahora tengo mi propio negocio de transporte.",
+      quote:
+        "Perdí mi trabajo y necesitaba nuevas oportunidades. Aprender a conducir me abrió puertas que nunca imaginé. Ahora tengo mi propio negocio de transporte.",
       moment: "El día que compré mi primer vehículo",
       emotion: "Orgullo y determinación",
       time: "6 meses después",
@@ -53,13 +66,14 @@ export default function DrivingSchoolSection() {
       role: "Jubilada",
       location: "Santa Marta",
       image: "https://i.pravatar.cc/400?img=9",
-      quote: "Todos decían que era muy tarde. A mis 62 años aprendí a conducir y ahora recorro el país visitando a mis nietos. La edad es solo un número.",
+      quote:
+        "Todos decían que era muy tarde. A mis 62 años aprendí a conducir y ahora recorro el país visitando a mis nietos. La edad es solo un número.",
       moment: "Viaje de 800km sola",
       emotion: "Nunca es tarde",
       time: "8 meses después",
       bgColor: "from-primary-600/20 to-accent-400/20",
     },
-  ]
+  ];
 
   // Categorías de licencias reales del CEA Del Caribe
   const categories = [
@@ -68,8 +82,10 @@ export default function DrivingSchoolSection() {
       name: "Categoría A1",
       icon: Bike,
       color: "from-green-500 to-emerald-600",
-      description: "Apropiada para conducir motocicletas de cilindraje igual o menor a 125 c.c.",
-      image: "https://images.unsplash.com/photo-1558981852-426c6c22a060?w=800&auto=format&fit=crop",
+      description:
+        "Apropiada para conducir motocicletas de cilindraje igual o menor a 125 c.c.",
+      image:
+        "https://images.unsplash.com/photo-1558981852-426c6c22a060?w=800&auto=format&fit=crop",
       benefits: ["Ideal para comenzar", "Económico", "Ágil en ciudad"],
       duration: "2-3 semanas",
     },
@@ -78,8 +94,10 @@ export default function DrivingSchoolSection() {
       name: "Categoría A2",
       icon: Bike,
       color: "from-blue-500 to-cyan-600",
-      description: "Para motocicletas, motociclos y mototriciclos (moto taxis) de cilindrajes menores o superiores a 125 c.c.",
-      image: "https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=800&auto=format&fit=crop",
+      description:
+        "Para motocicletas, motociclos y mototriciclos (moto taxis) de cilindrajes menores o superiores a 125 c.c.",
+      image:
+        "https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=800&auto=format&fit=crop",
       benefits: ["Mayor potencia", "Más libertad", "Trabajo (mototaxi)"],
       duration: "3-4 semanas",
     },
@@ -88,8 +106,10 @@ export default function DrivingSchoolSection() {
       name: "Categoría B1",
       icon: Car,
       color: "from-purple-500 to-pink-600",
-      description: "Automóviles, motocarros, camperos, camionetas, vehículos cuatromotor y microbuses de servicio particular.",
-      image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&auto=format&fit=crop",
+      description:
+        "Automóviles, motocarros, camperos, camionetas, vehículos cuatromotor y microbuses de servicio particular.",
+      image:
+        "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&auto=format&fit=crop",
       benefits: ["Uso personal", "Más seguridad", "Comodidad familiar"],
       duration: "4-6 semanas",
     },
@@ -98,8 +118,10 @@ export default function DrivingSchoolSection() {
       name: "Categoría C1",
       icon: Bus,
       color: "from-orange-500 to-red-600",
-      description: "Especializado en automóviles, motocarros, cuatrimotor, camperos, camionetas y microbuses de servicio público.",
-      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&auto=format&fit=crop",
+      description:
+        "Especializado en automóviles, motocarros, cuatrimotor, camperos, camionetas y microbuses de servicio público.",
+      image:
+        "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&auto=format&fit=crop",
       benefits: ["Oportunidad laboral", "Servicio público", "Mayor ingreso"],
       duration: "6-8 semanas",
     },
@@ -108,59 +130,64 @@ export default function DrivingSchoolSection() {
       name: "Categoría C2",
       icon: Bus,
       color: "from-indigo-500 to-blue-600",
-      description: "Para conducir camiones rígidos, buses y busetas de servicio público.",
-      image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800&auto=format&fit=crop",
+      description:
+        "Para conducir camiones rígidos, buses y busetas de servicio público.",
+      image:
+        "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800&auto=format&fit=crop",
       benefits: ["Transporte masivo", "Alta demanda", "Estabilidad laboral"],
       duration: "8-10 semanas",
     },
-  ]
+  ];
 
   const philosophyPoints = [
     {
       number: "01",
       title: "No enseñamos a conducir",
       subtitle: "Te damos las llaves de tu libertad",
-      description: "Cada clase es un paso hacia tu independencia. No memorizamos reglas, creamos conductores conscientes y seguros.",
+      description:
+        "Cada clase es un paso hacia tu independencia. No memorizamos reglas, creamos conductores conscientes y seguros.",
     },
     {
       number: "02",
       title: "El miedo es normal",
       subtitle: "Lo extraordinario es superarlo",
-      description: "Nuestro método se adapta a tu ritmo. Sin presión, sin juicios. Solo avanzamos cuando tú estás listo.",
+      description:
+        "Nuestro método se adapta a tu ritmo. Sin presión, sin juicios. Solo avanzamos cuando tú estás listo.",
     },
     {
       number: "03",
       title: "Tu historia es única",
       subtitle: "Tu aprendizaje también",
-      description: "No hay dos estudiantes iguales. Personalizamos cada experiencia porque entendemos que cada persona tiene su propio camino.",
+      description:
+        "No hay dos estudiantes iguales. Personalizamos cada experiencia porque entendemos que cada persona tiene su propio camino.",
     },
-  ]
+  ];
 
   // Auto-play stories
   useEffect(() => {
-    if (!isPlaying) return
-    
+    if (!isPlaying) return;
+
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          setCurrentStory((current) => (current + 1) % stories.length)
-          return 0
+          setCurrentStory((current) => (current + 1) % stories.length);
+          return 0;
         }
-        return prev + 1
-      })
-    }, 80)
+        return prev + 1;
+      });
+    }, 80);
 
-    return () => clearInterval(interval)
-  }, [isPlaying, stories.length])
+    return () => clearInterval(interval);
+  }, [isPlaying, stories.length]);
 
   const handleStoryChange = (index) => {
-    setCurrentStory(index)
-    setProgress(0)
-  }
+    setCurrentStory(index);
+    setProgress(0);
+  };
 
   const togglePlay = () => {
-    setIsPlaying(!isPlaying)
-  }
+    setIsPlaying(!isPlaying);
+  };
 
   return (
     <section
@@ -169,10 +196,7 @@ export default function DrivingSchoolSection() {
       className="relative min-h-screen overflow-hidden bg-black"
     >
       {/* Video Background Parallax */}
-      <motion.div 
-        style={{ y }}
-        className="absolute inset-0 opacity-20"
-      >
+      <motion.div style={{ y }} className="absolute inset-0 opacity-20">
         <div className="w-full h-full bg-gradient-to-br from-blue-900/30 to-green-900/30" />
         <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
       </motion.div>
@@ -189,7 +213,9 @@ export default function DrivingSchoolSection() {
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <span className="text-green-400 text-lg font-semibold">@ceadelcaribesas</span>
+            <span className="text-green-400 text-lg font-semibold">
+              @ceadelcaribesas
+            </span>
           </motion.div>
 
           <motion.h2
@@ -212,7 +238,8 @@ export default function DrivingSchoolSection() {
           >
             Cada día, miles de personas postergan sus sueños por miedo.
             <span className="block mt-4 text-white font-normal">
-              Nosotros no te enseñamos a conducir. Te enseñamos a vencer el miedo.
+              Nosotros no te enseñamos a conducir. Te enseñamos a vencer el
+              miedo.
             </span>
           </motion.p>
         </motion.div>
@@ -236,7 +263,12 @@ export default function DrivingSchoolSection() {
                   className="h-full bg-gradient-to-r from-green-500 to-blue-500"
                   initial={{ width: 0 }}
                   animate={{
-                    width: currentStory === index ? `${progress}%` : currentStory > index ? "100%" : "0%"
+                    width:
+                      currentStory === index
+                        ? `${progress}%`
+                        : currentStory > index
+                        ? "100%"
+                        : "0%",
                   }}
                   transition={{ duration: 0.1 }}
                 />
@@ -265,7 +297,7 @@ export default function DrivingSchoolSection() {
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.8 }}
                   />
-                  
+
                   {/* Location Badge */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -306,7 +338,8 @@ export default function DrivingSchoolSection() {
                         {stories[currentStory].name}
                       </h3>
                       <p className="text-green-400 text-lg">
-                        {stories[currentStory].role}, {stories[currentStory].age} años
+                        {stories[currentStory].role},{" "}
+                        {stories[currentStory].age} años
                       </p>
                     </div>
 
@@ -319,7 +352,9 @@ export default function DrivingSchoolSection() {
 
                     <div className="space-y-4">
                       <div className="bg-black/50 backdrop-blur-md p-4 rounded-xl">
-                        <p className="text-gray-400 text-sm mb-1">Su momento favorito</p>
+                        <p className="text-gray-400 text-sm mb-1">
+                          Su momento favorito
+                        </p>
                         <p className="text-white font-semibold text-lg">
                           {stories[currentStory].moment}
                         </p>
@@ -333,7 +368,9 @@ export default function DrivingSchoolSection() {
                           </p>
                         </div>
                         <div className="bg-black/50 backdrop-blur-md p-4 rounded-xl flex-1">
-                          <p className="text-gray-400 text-sm mb-1">Sensación</p>
+                          <p className="text-gray-400 text-sm mb-1">
+                            Sensación
+                          </p>
                           <p className="text-blue-400 font-semibold">
                             {stories[currentStory].emotion}
                           </p>
@@ -347,13 +384,19 @@ export default function DrivingSchoolSection() {
 
             {/* Navigation Arrows */}
             <button
-              onClick={() => handleStoryChange((currentStory - 1 + stories.length) % stories.length)}
+              onClick={() =>
+                handleStoryChange(
+                  (currentStory - 1 + stories.length) % stories.length
+                )
+              }
               className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 w-12 h-12 bg-black/50 backdrop-blur-md rounded-full items-center justify-center hover:bg-white/20 transition-all"
             >
               <span className="text-white text-2xl">←</span>
             </button>
             <button
-              onClick={() => handleStoryChange((currentStory + 1) % stories.length)}
+              onClick={() =>
+                handleStoryChange((currentStory + 1) % stories.length)
+              }
               className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 w-12 h-12 bg-black/50 backdrop-blur-md rounded-full items-center justify-center hover:bg-white/20 transition-all"
             >
               <span className="text-white text-2xl">→</span>
@@ -371,9 +414,14 @@ export default function DrivingSchoolSection() {
         >
           <div className="text-center mb-16">
             <h3 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              Nuestras <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">Categorías</span>
+              Nuestras{" "}
+              <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+                Categorías
+              </span>
             </h3>
-            <p className="text-xl text-gray-400">Encuentra la licencia perfecta para ti</p>
+            <p className="text-xl text-gray-400">
+              Encuentra la licencia perfecta para ti
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -389,8 +437,8 @@ export default function DrivingSchoolSection() {
               >
                 {/* Background Image */}
                 <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
-                  <img 
-                    src={category.image} 
+                  <img
+                    src={category.image}
                     alt={category.name}
                     className="w-full h-full object-cover"
                   />
@@ -399,7 +447,9 @@ export default function DrivingSchoolSection() {
                 {/* Content */}
                 <div className="relative p-6">
                   {/* Icon */}
-                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                  <div
+                    className={`w-16 h-16 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                  >
                     <category.icon className="w-8 h-8 text-white" />
                   </div>
 
@@ -426,12 +476,16 @@ export default function DrivingSchoolSection() {
                   {/* Duration */}
                   <div className="flex items-center justify-between pt-4 border-t border-white/10">
                     <span className="text-sm text-gray-500">Duración</span>
-                    <span className="text-sm font-semibold text-green-400">{category.duration}</span>
+                    <span className="text-sm font-semibold text-green-400">
+                      {category.duration}
+                    </span>
                   </div>
                 </div>
 
                 {/* Hover Effect Gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none`} />
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none`}
+                />
               </motion.div>
             ))}
           </div>
@@ -445,7 +499,11 @@ export default function DrivingSchoolSection() {
           className="max-w-6xl mx-auto mb-32"
         >
           <h3 className="text-3xl md:text-5xl font-bold text-center text-white mb-20">
-            Nuestra <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">filosofía</span> es diferente
+            Nuestra{" "}
+            <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+              filosofía
+            </span>{" "}
+            es diferente
           </h3>
 
           <div className="space-y-12 md:space-y-20">
@@ -456,7 +514,9 @@ export default function DrivingSchoolSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8 }}
-                className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-16`}
+                className={`flex flex-col ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                } items-center gap-8 md:gap-16`}
               >
                 <div className="flex-shrink-0">
                   <motion.div
@@ -492,55 +552,80 @@ export default function DrivingSchoolSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <div className="bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl p-12 md:p-16 rounded-3xl border border-green-500/30 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-blue-500/10" />
-            
+          <div className="bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl p-8 md:p-12 lg:p-16 rounded-3xl border border-primary-500/30 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent-500/10" />
+
             <div className="relative z-10">
-              <h3 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6">
                 ¿Estás listo para tu{" "}
-                <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">primera vez?</span>
+                <span className="bg-gradient-to-r from-primary-400 to-accent-500 bg-clip-text text-transparent">
+                  primera vez?
+                </span>
               </h3>
-              
-              <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-                No te prometemos un curso perfecto. Te prometemos que estaremos contigo 
-                en cada momento de duda, en cada logro pequeño, hasta que ese miedo 
-                se convierta en seguridad.
+
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 md:mb-8 leading-relaxed px-4">
+                No te prometemos un curso perfecto. Te prometemos que estaremos
+                contigo en cada momento de duda, en cada logro pequeño, hasta
+                que ese miedo se convierta en seguridad.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              {/* Botones principales */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6 md:mb-8 px-4">
+                {/* ✅ Link de Registro */}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link
+                    to="/academia/registro"
+                    className="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-primary-500 to-accent-600 text-white font-bold rounded-full text-base md:text-lg shadow-lg hover:shadow-primary-500/50 transition-all flex items-center justify-center gap-2"
+                  >
+                    <User className="w-5 h-5" />
+                    Registrarme Ahora
+                  </Link>
+                </motion.div>
+
+                {/* Botón de WhatsApp */}
                 <motion.a
                   href="https://wa.me/573107167090"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold rounded-full text-lg shadow-lg hover:shadow-green-500/50 transition-all flex items-center justify-center gap-2"
+                  className="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold rounded-full text-base md:text-lg shadow-lg hover:shadow-green-500/50 transition-all flex items-center justify-center gap-2"
                 >
                   <Phone className="w-5 h-5" />
-                  Quiero mi Primera Clase Gratis
+                  Primera Clase Gratis
                 </motion.a>
 
+                {/* Botón de contacto */}
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-black/50 backdrop-blur-md border-2 border-white/30 text-white font-bold rounded-full text-lg hover:bg-white/10 transition-all"
+                  className="px-6 md:px-8 py-3 md:py-4 bg-black/50 backdrop-blur-md border-2 border-white/30 text-white font-bold rounded-full text-base md:text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2"
                 >
-                  Hablar con un Instructor
+                  <MessageCircle className="w-5 h-5" />
+                  Hablar con Instructor
                 </motion.button>
               </div>
 
               {/* Información de contacto */}
-              <div className="flex flex-col items-center gap-3 text-gray-400">
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  <span className="text-sm">Calle 79 #49c-47, Barranquilla</span>
+              <div className="flex flex-col items-center gap-3 text-gray-400 px-4">
+                <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-center sm:text-left">
+                      Calle 79 #49c-47, Barranquilla
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm">WhatsApp: 310 716 7090</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  <span className="text-sm">WhatsApp: 310 716 7090</span>
-                </div>
-                <p className="text-gray-500 text-sm mt-2">
-                  * Primera clase sin compromiso • Método personalizado • Horarios flexibles
+                <p className="text-gray-500 text-xs sm:text-sm mt-2 text-center">
+                  * Primera clase sin compromiso • Método personalizado •
+                  Horarios flexibles
                 </p>
               </div>
             </div>
@@ -548,5 +633,5 @@ export default function DrivingSchoolSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

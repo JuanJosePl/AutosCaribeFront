@@ -95,11 +95,16 @@ export default function Footer() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
+                <Link
+                to="/"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} // 👈 Subir suavemente al inicio
+              >
                 <img
                   src="/logoEmpresa/logoNav(sinFondo).png"
                   alt="Caribe Autos"
-                  className="h-16 mb-6 object-contain"
+                  className="h-52 w-56 md:h-40 lg:h-44 object-contain transition-all duration-300"
                 />
+              </Link>
                 <p className="text-gray-400 leading-relaxed mb-6 text-sm md:text-base">
                   Tu socio de confianza en vehículos de lujo y repuestos
                   originales en el Caribe. Más de 20 años brindando calidad y

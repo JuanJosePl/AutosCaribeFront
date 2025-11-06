@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Mail, MapPin } from "lucide-react";
 
@@ -20,7 +21,7 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm"
+        className="fixed top-0 left-0 right-0 z-50 bg-transparent "
       >
         <div className="container-custom py-4 md:py-6">
           {/* Mobile Menu Button - Top Left */}
@@ -35,23 +36,27 @@ export default function Navbar() {
               <Menu className="w-6 h-6" />
             )}
           </motion.button>
-
+         
           {/* Logo Centrado */}
           <div className="relative flex justify-center items-center h-20 md:h-24">
-            <motion.a
-              href="#hero"
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="absolute z-10"
             >
-              <img
-                src="/logoEmpresa/logoNav(sinFondo).png"
-                alt="Caribe Autos"
-                className="h-72 w-96 md:h-40 lg:h-44 object-contain transition-all duration-300"
-              />
-            </motion.a>
+              
+              <Link
+                to="/"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} // 👈 Subir suavemente al inicio
+              >
+                <img
+                  src="/logoEmpresa/logoNav(sinFondo).png"
+                  alt="Caribe Autos"
+                  className="h-72 w-96 md:h-40 lg:h-44 object-contain transition-all duration-300"
+                />
+              </Link>
+            </motion.div>
           </div>
-
           {/* Contact Button - Desktop only */}
           <div className="hidden lg:flex absolute right-8 top-1/2 transform -translate-y-1/2">
             <motion.a
