@@ -557,9 +557,9 @@ export default function DrivingSchoolSection() {
 
             <div className="relative z-10">
               <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6">
-                ¿Estás listo para tu{" "}
+               ¿Qué deseas hacer {" "}
                 <span className="bg-gradient-to-r from-primary-400 to-accent-500 bg-clip-text text-transparent">
-                  primera vez?
+                  hoy?
                 </span>
               </h3>
 
