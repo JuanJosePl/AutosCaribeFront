@@ -325,7 +325,7 @@ export default function HeroSection() {
               variants={itemVariants}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 text-white leading-tight px-4"
             >
-              Sea del Caribe —{" "}
+              Cea del Caribe —{" "}
               <span className="block sm:inline mt-1 sm:mt-0">
                 <span className="gradient-text">
                   Donde la movilidad evoluciona
